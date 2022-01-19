@@ -19,21 +19,19 @@ export default function ExpressDetail() {
     console.log(data);
     if (error) console.log("error", error);
     else setDonvi(data[0]);
-    fetchNV();
+    fetchNV(data[0]);
   };
-  const fetchNV = async () => {
-    console.log(donvi.id_nv);
-    if (donvi.id_nv) {
+  const fetchNV = async (dv) => {
       let { data, error } = await supabase
         .from("N2_nhan_vien")
         .select("*")
-        .eq("id_nv", donvi.id_nv);
+        .eq("id_nv", dv.id_nv);
 
       if (error) console.log("error", error);
       else setNv(data[0]);
-    }
   };
 
+  console.log(nv);
   let tt = donvi.N2_trang_thai;
   return (
     <div>
